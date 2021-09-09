@@ -27,7 +27,8 @@ class WordStatistics():
             self.main_trie = pickle.load(open_file)
             open_file.close()
         except FileNotFoundError:
-            raise Exception("File not found. Server will not be load")
+            print("File not found. Server will not be load")
+            exit()
 
 
     def saveWordsStatistics(self):
@@ -38,7 +39,7 @@ class WordStatistics():
             pickle.dump(self.main_trie, open_file)
             open_file.close()
         except FileNotFoundError:
-            raise Exception("Server could not save current statistics")
+            print("Server could not save current statistics snapshot")
 
 
 
@@ -50,7 +51,7 @@ class WordStatistics():
 
 
     def getWordCounter(self, word):
-        word_counter = self.main_trie.root.search(word)
+        word_counter = self.main_trie.search(word)
         return word_counter
 
 

@@ -21,7 +21,8 @@ ih = InputHandler('TEST')
 
 @pytest.mark.run(order=4)
 def test_file_handler(clean_inputHandler_instance):
-    test_file_path = Path(TESTFILE)
+    test_file_path = Path(__file__).parent.joinpath(TESTFILE)
+
     assert ih.fileHandler(test_file_path) == True
 
 @pytest.mark.run(order=5)

@@ -1,7 +1,7 @@
 # LemonadeWordCounter
 requirements:
 
-pip install pathlib\n
+pip install pathlib/n
 pip insatll pickle\n
 pip install re (?)\n
 pip install configparser\n

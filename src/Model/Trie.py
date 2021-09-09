@@ -13,14 +13,14 @@ class Trie():
     def insertList(self, words):
         for word in words:
             input_word = word.lower()
-            self.insert(input_word)
+            self.__insert(input_word)
 
-    def insert(self, word):
+    def __insert(self, word):
         assert (word.islower())
         assert (word.isalpha())
-        return self.insertRec(self.root, word, 0)
+        return self.__insertRec(self.root, word, 0)
 
-    def insertRec(self, node, word, index):
+    def __insertRec(self, node, word, index):
         if index >= len(word):
             node.is_word = True
             node.counter += 1
@@ -28,16 +28,16 @@ class Trie():
 
         if word[index] not in node.children:
             node.children[word[index]] = Trie.TrieNode()
-        return self.insertRec(node.children[word[index]], word, index + 1)
+        return self.__insertRec(node.children[word[index]], word, index + 1)
 
     def search(self, word, index=-1):
-        return self.searchRec(self.root, word, index)
+        return self.__searchRec(self.root, word, index)
 
-    def searchRec(self, node, word, index):
+    def __searchRec(self, node, word, index):
         if (index == len(word) - 1):
             return node.counter
         next_child = node.children.get(word[index + 1], None)
-        return self.searchRec(next_child, word, index + 1) if next_child else 0
+        return self.__searchRec(next_child, word, index + 1) if next_child else 0
 
     class TrieNode():
         def __init__(self, is_word=False):

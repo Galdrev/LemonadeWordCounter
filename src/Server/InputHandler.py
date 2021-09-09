@@ -17,7 +17,7 @@ class InputHandler():
             with open(file_path, 'r+') as input_file:
                 for line in input_file:
                     line = line.rstrip('\n')
-                    self.insertNormalized(line)
+                    self.__insertNormalized(line)
             self.word_stat.saveWordsStatistics()
         except Exception:
             return False
@@ -29,7 +29,7 @@ class InputHandler():
             data_url = urllib.request.urlopen(uri)
             for line in data_url:
                 decoded_line = line.decode(DECODE_TYPE).rstrip('\n')
-                self.insertNormalized(decoded_line)
+                self.__insertNormalized(decoded_line)
             self.word_stat.saveWordsStatistics()
             return True
         except Exception:
@@ -38,14 +38,14 @@ class InputHandler():
     def textHandler(self, text):
         try:
             decoded_text = text.decode(DECODE_TYPE)
-            self.insertNormalized(decoded_text)
+            self.__insertNormalized(decoded_text)
             self.word_stat.saveWordsStatistics()
         except Exception:
             return False
         return True
 
 
-    def insertNormalized(self, data):
+    def __insertNormalized(self, data):
         try:
             self.word_stat.insertText(data)
         except Exception:

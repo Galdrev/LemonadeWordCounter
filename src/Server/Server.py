@@ -64,6 +64,7 @@ if __name__ == "__main__":
     app.config["ENV"] = DEFAULT
     input_handler = InputHandler(app.config['ENV'])
     app.run(host=args.host, port=args.port)
+
 else:
     app.config["ENV"] = TEST
     input_handler = InputHandler(app.config['ENV'])

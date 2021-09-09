@@ -1,10 +1,10 @@
 # LemonadeWordCounter
 requirements:
 
-pip install pathlib
-pip insatll pickle
-pip install re (?)
-pip install configparser
-pip install flask
-pip install argparse (?)
-pip install pytest
+pip install pathlib\n
+pip insatll pickle\n
+pip install re (?)\n
+pip install configparser\n
+pip install flask\n
+pip install argparse (?)\n
+pip install pytest\n

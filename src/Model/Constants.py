@@ -1,0 +1,14 @@
+STATISTICSFILEPATH = 'statisticsfilepath'
+DECODE_TYPE = 'utf-8'
+WORD_STRING = "Word"
+COUNTER_STRING = "Counter"
+CONTENT_JSON = "application/json"
+CONTENT_TEXT = "text/plain"
+FILE = "file"
+URL = "url"
+WORD = "word"
+COUNTER = "counter"
+WORDCOUNTER_ENDPOINT = '/word_counter/'
+WORDSTATISTICS_ENDPOINT = '/word_statistics/'
+DEFAULT = 'DEFAULT'
+TEST = 'TEST'

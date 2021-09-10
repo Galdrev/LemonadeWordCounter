@@ -1,7 +1,5 @@
 import sys
 import subprocess
-from pathlib import Path
-
 
 
 subprocess.check_call([sys.executable, '-m', 'pip', 'install',

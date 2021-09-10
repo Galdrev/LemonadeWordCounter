@@ -3,10 +3,14 @@ from ..Server.Server import app, WORDSTATISTICS_ENDPOINT, WORDCOUNTER_ENDPOINT, 
 from ..Server.InputHandler import *
 from ..Server.InputHandler import InputHandler, DECODE_TYPE
 import json
-
+from pathlib import Path
+import sys
+## make src dir avlb for cmd operation
+src_dir_location = Path(__file__).parents[2]
+sys.path.append(str(src_dir_location))
 
 TESTURL = 'https://en.wikipedia.org/wiki/Lemonade,_Inc.'
-TESTFILE = "./testfile.txt"
+TESTFILE = "./src/Tests/testfile.txt"
 TESTTEXT = "Hi! My name is (what?), my name is (who?), my name is Slim Shady".encode(DECODE_TYPE)
 
 @pytest.fixture()

@@ -4,6 +4,12 @@ import json
 import sys
 from http import HTTPStatus
 from flask import request, jsonify
+from pathlib import Path
+
+## make src dir avlb for cmd operation
+src_dir_location = Path(__file__).parents[2]
+sys.path.append(str(src_dir_location))
+
 from src.Server.InputHandler import InputHandler
 from src.Model.Constants import *
 

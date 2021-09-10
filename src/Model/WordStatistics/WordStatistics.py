@@ -1,4 +1,4 @@
-from src.Model import Trie
+from src.Model.Trie import Trie
 from src.Model.Config import *
 from src.Model.Constants import *
 import re
@@ -8,7 +8,7 @@ import pickle
 
 class WordStatistics():
 
-    main_trie = Trie.Trie()
+    main_trie = Trie()
     persistent_file_path = None
 
     def __init__(self, config_context):
@@ -56,7 +56,7 @@ class WordStatistics():
 
 
     def empty_statistics(self):
-        self.main_trie = Trie.Trie()
+        self.main_trie = Trie()
         self.saveWordsStatistics()
 
 

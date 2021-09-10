@@ -2,10 +2,6 @@ from src.Model.WordStatistics import WordStatistics
 import urllib.request
 from src.Model.Constants import *
 
-
-
-
-
 class InputHandler():
 
     word_stat = None

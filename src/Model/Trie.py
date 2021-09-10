@@ -1,6 +1,3 @@
-from src.Model.Constants import *
-
-
 class Trie():
 
     def __init__(self, words=""):

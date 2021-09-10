@@ -64,7 +64,9 @@ Word counter endpoint that collects words and creates word appearence statistics
 ## Additional Information
 1. "InstallPackages.py" script contains ```pip install <package>``` command for "pathlib", "configparser", "flask", "argparse" and "pytest". 
 2. I have added tests for all relevant classes:
+
       2.1 Open the command line and switch to the root directory of the project
+   
       2.2 Run ```py.test -vv```
 
 

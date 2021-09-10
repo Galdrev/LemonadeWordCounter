@@ -1,4 +1,4 @@
-# LemonadeWordCounter
+# Lemonade Word Counter
 Word counter endpoint that collects words and creates word appearence statistics and return statistics for specific words. 
 
 ## Initialization:

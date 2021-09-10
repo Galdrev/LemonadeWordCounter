@@ -40,7 +40,7 @@ Word counter endpoint that collects words and creates word appearence statistics
     *{"url":"https://www.lemonade.com/"}*
 
 **Output**
- will return in application/json format with empty string. Success status code will be 202 (OK)
+ will return in application/json format with empty string. Success status code will be 202 (Accepted)
 
 ### Word Statistics
 
@@ -59,7 +59,7 @@ Word counter endpoint that collects words and creates word appearence statistics
     "Counter": 32,
     "Word": "lemonade"
 }```
-. Success status code will be 202 (OK)
+. Success status code will be 200 (OK)
 
 ## Additional Information
 1. "InstallPackages.py" script contains ```pip install <package>``` command for "pathlib", "configparser", "flask", "argparse" and "pytest". 

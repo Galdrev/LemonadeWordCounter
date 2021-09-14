@@ -21,26 +21,27 @@ Word counter endpoint that collects words and creates word appearence statistics
 ```POST /word_counter/```
 
 **Input**:  
-1.  **Simple Text String**: "Headers[Content-Type] : text/plain" - Containing body of string with simple text input:
+1.  **Simple Text String**: "Headers[Content-Type] : application/json" - Containing JSON object in the body formated as : ```{"type":"text", "value":"<*your_text*>"}```
 
     Body example:
     
-    *Hey! My name is (what?), my name is (who?), my name is Slim Shady*
+    *{"type":"text", "value":"Hey! My name is (what?), my name is (who?), my name is Slim Shady"}*
+    
 
-2.  **Text From File**: "Headers[Content-Type] : application/json" - Containing JSON object in the body formated as ```{"file":"<*your_full_file_path*>"}```
+2.  **Text From File**: "Headers[Content-Type] : application/json" - Containing JSON object in the body formated as ```{"type":"file", "value":"<*your_file_path*>"}```
 
     Body example:
     
-    *{"file":"C:/Hey/How/Are/You/fine.txt"}*
+    *{"type":"file", "value":"C:/Users/galdreval/intersting_text.txt"}*
 
-3.  **Text From URL**: "Headers[Content-Type] : application/json" - Containing JSON object in the body formated as ```{"url":"<*your_full_URL*>"}```
+3.  **Text From URL**: "Headers[Content-Type] : application/json" - Containing JSON object in the body formated as ```{"type":"url", "value":"<*your_url*>"}```
 
     Body example:
     
-    *{"url":"https://www.lemonade.com/"}*
+    *{"type":"url", "value":"https://www.google.com/intersting_search"}*
 
 **Output**
- will return in application/json format with empty string. Success status code will be 202 (Accepted)
+ will be returned in application/json format with the server message. Success status code will be 202 (Accepted)
 
 ### Word Statistics
 
@@ -48,11 +49,10 @@ Word counter endpoint that collects words and creates word appearence statistics
 
 **Input**:  
 
-1.  **Word as JSON**: "Headers[Content-Type] : application/json" && "Headers[Accept] : application/json"  - Containing JSON object in the body formated as ```{"word":"<*your_desired_word*>"}```
-
-    Body example:
+1.  **Word as JSON**: Containing url query parameter with "word" as a key
+    URL example:
     
-    *{"word":"lemonade"}*
+    *http://localhost:5555/word_statistics/?word=lemonade*
 
 **Output**
  will return in application/json formated as  ```{

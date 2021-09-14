@@ -1,6 +1,6 @@
 import pytest
 from ..Model.WordStatistics import WordStatistics
-from ..Model import Trie
+from ..Model import WordDict
 from ..Model.Config import config
 from pathlib import Path
 import os
@@ -14,9 +14,10 @@ ws.insertText(text_test)
 config_env = config['TEST']
 
 @pytest.mark.run(order=1)
-def test_insert_words_to_wordstatistics_vs_trie():
-    tr = Trie.Trie(list_text_test)
-    assert ws.main_trie == tr
+def test_insert_words_to_wordstatistics_vs_WordDict():
+    wd = WordDict.WordDict()
+    wd.insertList(list_text_test)
+    assert ws.main_word_dict == wd
 
 @pytest.mark.run(order=2)
 def test_number_of_MY_need_to_set_3():
@@ -28,7 +29,7 @@ def test_persistant_is_working():
     full_persistent_file_path = (Path(__file__).parent.parent).joinpath(file_path)
     with open(full_persistent_file_path, 'rb+') as open_file:
         tr = pickle.load(open_file)
-    assert tr == ws.main_trie
+    assert tr == ws.main_word_dict
 
 
 @pytest.mark.run('last')

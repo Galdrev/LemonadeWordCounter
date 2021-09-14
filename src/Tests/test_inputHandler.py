@@ -1,7 +1,7 @@
 import pytest
 from ..Model.WordStatistics import WordStatistics
 from ..Server.InputHandler import InputHandler, DECODE_TYPE
-from ..Model import Trie
+from ..Model import WordDict
 from ..Model.Config import config
 from pathlib import Path
 import os

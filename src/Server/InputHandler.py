@@ -33,8 +33,7 @@ class InputHandler():
 
     def textHandler(self, text):
         try:
-            decoded_text = text.decode(DECODE_TYPE)
-            self.__insertNormalized(decoded_text)
+            self.__insertNormalized(text)
             self.word_stat.saveWordsStatistics()
         except Exception:
             return False
@@ -49,7 +48,8 @@ class InputHandler():
         return True
 
     def wordCount(self, word):
-        assert (word.isalpha())
+        if not word.isalpha():
+            return -1
         word = word.lower()
         try:
             word_counter = self.word_stat.getWordCounter(word)

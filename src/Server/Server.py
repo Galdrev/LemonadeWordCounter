@@ -31,30 +31,35 @@ app.config["DEBUG"] = False
 
 @app.route(WORDCOUNTER_ENDPOINT, methods=['POST'])
 def wordCounter():
+    res = None
     if request.content_type == CONTENT_JSON:
         try:
             parsed_json = request.get_json()
-            if (FILE in parsed_json):
-                res = input_handler.fileHandler(parsed_json[FILE])
-            else:
-                res = input_handler.uriHandler(parsed_json[URL])
+            if not checkJsonValidity(parsed_json):
+                return sendResponse(HTTPStatus.BAD_REQUEST,
+                                    "Invalid input - the input should created as JSON object with type and value attributes")
+            type, value = parsed_json[TYPE], parsed_json[VALUE]
+            if type == FILE:
+                res = input_handler.fileHandler(value)
+            elif type == URL:
+                res = input_handler.uriHandler(value)
+            elif type == TEXT:
+                res = input_handler.textHandler(value)
         except Exception:
             ret = "ERROR: "+str(sys.exc_info()[0])
-            return sendResponse(HTTPStatus.FORBIDDEN)
-    elif request.content_type == CONTENT_TEXT:
-        text = request.data
-        res = input_handler.textHandler(text)
-    return sendResponse(HTTPStatus.ACCEPTED) if res else sendResponse(HTTPStatus.CONFLICT)
+            return sendResponse(HTTPStatus.FORBIDDEN, ret)
+    return sendResponse(HTTPStatus.ACCEPTED, "Accepted") if res else sendResponse(HTTPStatus.CONFLICT, "Could not load data to the server")
 
 @app.route(WORDSTATISTICS_ENDPOINT, methods=['GET'])
 def wordStatistics():
-    assert(request.content_type == CONTENT_JSON)
-    parsed_json = request.get_json()
-    word_counter = input_handler.wordCount(parsed_json[WORD])
+    if (request.args.get(WORD_QUERY) is None) or (not request.args.get(WORD_QUERY)):
+        return sendResponse(HTTPStatus.BAD_REQUEST, message="The server could not locate the word input")
+    word = request.args.get(WORD_QUERY)
+    word_counter = input_handler.wordCount(word)
     if (word_counter == -1):
         return sendResponse(HTTPStatus.BAD_REQUEST, message="The server encountered a problem during the search")
     else:
-        return jsonify(word_counter), HTTPStatus.OK
+        return sendResponse(HTTPStatus.OK, word_counter)
 
 def sendResponse(code, message=""):
     response = app.response_class(
@@ -64,6 +69,10 @@ def sendResponse(code, message=""):
     )
     return response
 
+def checkJsonValidity(json_data):
+    if (TYPE in json_data and VALUE in json_data):
+        return True
+    return False
 
 if __name__ == "__main__":
     args = parser.parse_args()
